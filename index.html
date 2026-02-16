@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Carvallo Bodega · Pedidos</title>
+  <meta name="theme-color" content="#d41717" />
+  <link rel="manifest" href="./manifest.webmanifest" />
+  <link rel="stylesheet" href="./assets/styles.css" />
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="t">CARVALLO BODEGA</div>
+      <div class="s" id="who">No conectado</div>
+    </div>
+
+    <button class="iconbtn" id="btnLogin">
+      <span>Cuenta</span>
+      <span class="badge" id="cartCount">0</span>
+    </button>
+  </header>
+
+  <main class="container">
+    <div class="grid">
+
+      <!-- PRODUCTOS -->
+      <section class="card">
+        <h3 class="h">Productos</h3>
+
+        <div class="filters">
+          <input id="q" class="input" placeholder="Buscar por nombre o código…" />
+          <div class="small" id="count">0 productos</div>
+        </div>
+
+        <div class="pills" id="pills" style="margin-top:10px"></div>
+
+        <div class="products" id="products" style="margin-top:12px"></div>
+      </section>
+
+      <!-- CARRITO -->
+      <aside class="card">
+        <h3 class="h">Carrito</h3>
+        <div id="cartItems" style="margin-top:8px"></div>
+
+        <div id="cartolemanWrap" style="display:none;margin-top:10px">
+          <label style="display:flex;gap:10px;align-items:center;font-weight:900">
+            <input type="checkbox" id="cartoleman" style="transform:scale(1.2)" />
+            Cartoleman con hilo (+ Gs 5.000)
+          </label>
+          <div class="small">Solo aparece si el pedido incluye cervezas.</div>
+        </div>
+
+        <div class="totalBox">
+          <div class="totalRow"><span>Subtotal</span><span id="subt">Gs 0</span></div>
+          <div class="totalRow"><span>Cartoleman</span><span id="cartolemanVal">Gs 0</span></div>
+          <hr style="border:0;border-top:1px dashed rgba(17,24,39,.18);margin:10px 0" />
+          <div class="totalRow" style="font-size:18px"><span>Total</span><span id="tot">Gs 0</span></div>
+        </div>
+
+        <div class="row" style="margin-top:12px">
+          <button class="btn btn-green" id="btnWhatsapp" style="flex:1">Finalizar por WhatsApp</button>
+          <button class="btn btn-ghost" id="btnClear">Vaciar</button>
+        </div>
+
+        <div class="small" style="margin-top:10px">
+          Al enviar, te va a pedir ubicación. (Y sí: la ubicación, no la biografía completa 😄)
+        </div>
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- LOGIN / REGISTRO -->
+  <div class="modal" id="loginModal">
+    <div class="box card">
+      <h3 class="h">Ingresar</h3>
+      <div class="small">Para pedir: CI/RUC + Nombre. Una vez guardado, ya queda conectado.</div>
+
+      <div style="margin-top:10px" class="row">
+        <input class="input" id="login_ruc" placeholder="CI o RUC" />
+        <input class="input" id="login_nombre" placeholder="Nombre" />
+      </div>
+
+      <div class="row" style="margin-top:12px">
+        <button class="btn btn-green" id="btnLogin2" style="flex:1">Guardar y entrar</button>
+        <button class="btn btn-red" id="btnLogout">Cerrar sesión</button>
+      </div>
+
+      <div class="small" style="margin-top:10px">
+        Si la API no responde, revisá <b>APP_CONFIG.API_BASE</b> en <code>assets/config.js</code>.
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">Listo</div>
+
+  <script src="./assets/config.js"></script>
+  <script src="./assets/app.js"></script>
+  <script>
+    // PWA simple
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js').catch(()=>{});
+    }
+  </script>
+</body>
+</html>

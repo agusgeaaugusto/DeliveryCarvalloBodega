@@ -1,0 +1,9 @@
+{
+  "name": "Carvallo Bodega - Pedidos",
+  "short_name": "Carvallo",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f6f7fb",
+  "theme_color": "#d41717",
+  "icons": []
+}
